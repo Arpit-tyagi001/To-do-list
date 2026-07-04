@@ -16,19 +16,33 @@ tasks.forEach(task => renderTasks(task));
     };
     tasks.push(newTask);
     saveTasks();
-    todoInput.value = '';
+    renderTasks(newTask); // call render after adding
+    todoInput.value = '';  //clear input
     console.log(tasks);
-    renderTasks(); // call render after adding
   });
 
-  function renderTasks() {
-    todoList.innerHTML = '';
-    tasks.forEach(task => {
-      const li = document.createElement('li');
-      li.textContent = task.text;
-      todoList.appendChild(li);
+  function renderTasks(task) {
+    const li = document.createElement("li");
+    li.setAttribute("data-id", task.id);
+    if (task.completed) li.classList.add("completed");
+    li.innerHTML = `
+    <span>${task.text}</span>
+    <button>delete</button>`;
+    li.addEventListener('click', (e) => {
+      if (e.target.tagName == 'BUTTON') return;
+      task.completed = !task.completed;
+      li.classList.toggle('completed')
+      saveTasks();
     });
-  }
+    li.querySelector('button').addEventListener('click', (e) => {
+      e.stopPropagation();  //prevent toggle from firing
+      tasks =  tasks.filter(t => t.id !== task.id);
+      li.remove();
+      saveTasks();
+    })
+    todoList.appendChild(li);
+    };
+  
 
   function saveTasks() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
