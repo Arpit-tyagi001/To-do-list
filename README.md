@@ -1,6 +1,6 @@
 # 📝 To-Do List App
 
-A clean and responsive **To-Do List** application built using **HTML, CSS, and Vanilla JavaScript**. The app allows users to add, complete, and delete tasks while storing all data in **Local Storage**, ensuring tasks remain available even after refreshing the browser.
+A clean and responsive **To-Do List** application built using **HTML, CSS, and JavaScript**. The app allows users to add, complete, and delete tasks while storing all data in **Local Storage**, ensuring tasks remain available even after refreshing the browser.
 
 > 🚀 Built by **Arpit Tyagi**
 >
